@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Отопительные печи — Галерея работ | ТеплоИнженерМонтаж</title>
+  <link rel="icon" type="image/x-icon" href="../images/icon.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
+      color: #2d2d2d;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #E34A27;
+      color: white;
+      padding: 1.2rem 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .back-link {
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      cursor: pointer; /* ← Курсор "рука" */
+      transition: transform 0.2s ease;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.02);
+    }
+    .gallery-item figcaption {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #555;
+      text-align: center;
+    }
+
+    /* Lightbox styles */
+    #lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.92);
+        z-index: 2000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    #lightbox.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+    }
+    #lightbox img {
+        max-width: 95%;
+        max-height: 90vh;
+        object-fit: contain;
+        /*border: 2px solid white;*/
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    }
+    #close-lightbox {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+        z-index: 2001;
+    }
+    #close-lightbox:hover {
+        color: #E34A27;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Отопительные печи</h1>
+    <a href="../index.html" class="back-link">← Вернуться на главную</a>
+  </header>
+  <main class="gallery-grid">
+    <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_1.jpg" alt="Отопительная печь — фото 1">
+    </figure>
+    <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_2.jpg" alt="Отопительная печь — фото 2">
+    </figure>
+        <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_3.jpg" alt="Отопительная печь — фото 1">
+    </figure>
+    <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_4.jpg" alt="Отопительная печь — фото 2">
+    </figure>
+        <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_5.jpg" alt="Отопительная печь — фото 1">
+    </figure>
+    <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_6.jpg" alt="Отопительная печь — фото 2">
+    </figure>
+        <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_7.jpg" alt="Отопительная печь — фото 1">
+    </figure>
+    <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_8.jpg" alt="Отопительная печь — фото 2">
+    </figure>
+        <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_9.jpg" alt="Отопительная печь — фото 1">
+    </figure>
+    <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_10.jpg" alt="Отопительная печь — фото 2">
+    </figure>
+        </figure>
+        <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_11.jpg" alt="Отопительная печь — фото 1">
+    </figure>
+    <figure class="gallery-item">
+      <img src="../images/gallery/pech/pech_12.jpg" alt="Отопительная печь — фото 2">
+    </figure>
+    <!-- Добавьте ещё -->
+  </main>
+</body>
+  <!-- Lightbox container -->
+  <div id="lightbox">
+    <span id="close-lightbox">&times;</span>
+    <img id="lightbox-img" src="" alt="Увеличенное фото">
+  </div>
+
+  <script>
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    document.getElementById('close-lightbox').addEventListener('click', () => {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('lightbox')) {
+        e.target.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

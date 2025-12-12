@@ -1,0 +1,517 @@
+/* Плавная прокрутка */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Современная цветовая палитра */
+:root {
+    --primary: #E34A27;
+    --primary-dark: #B2381C;
+    --secondary: #F7B733;
+    --background: #fafafa;
+    --text: #2d2d2d;
+    --text-light: #555;
+    --border: #e0e0e0;
+    --shadow: rgba(0, 0, 0, 0.06);
+    --shadow-hover: rgba(0, 0, 0, 0.12);
+}
+
+/* Сброс и шрифты */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+/* Хедер (hero-секция) — обновлённая версия, без дублей */
+header {
+    background: url('../images/camin.jpg') center/cover no-repeat;
+    padding: 6rem 0;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 16px;
+    backdrop-filter: blur(2px);
+}
+
+h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(227, 74, 39, 0.25);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(227, 74, 39, 0.4);
+}
+
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Секции */
+section {
+    padding: 1rem 0;
+}
+
+section.services,
+section.vacuum-cleaning,
+section.advantages,
+section.about {
+    background-color: white;
+}
+
+section.reviews,
+.advantages {
+    background-color: var(--background);
+}
+
+/* Заголовки секций */
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+    color: var(--primary-dark);
+    position: relative;
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--secondary);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Контент-блоки */
+.about-content,
+.vacuum-content,
+.montazh-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-content:hover,
+.vacuum-content:hover,
+.montazh-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px var(--shadow-hover);
+}
+
+/* Текст и заголовки внутри блоков */
+.about-content p,
+.vacuum-content p,
+.montazh-content p {
+    margin-bottom: 1.5rem;
+}
+
+.about-content h3,
+.vacuum-content h3,
+.montazh-content h3 {
+    color: var(--primary-dark);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.6rem;
+}
+
+/* Списки — SVG иконки */
+.about-content ul,
+.vacuum-content ul,
+.montazh-content ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.about-content ul li,
+.vacuum-content ul li,
+.montazh-content ul li {
+    position: relative;
+    padding-left: 2.2rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+.vacuum-content ul li::before,
+.about-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23E34A27' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: contain;
+}
+
+.montazh-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='%23F7B733' stroke-width='2'/%3E%3C/svg%3E");
+    background-size: contain;
+}
+
+/* Кнопки внутри контента */
+.about-content .btn,
+.vacuum-content .btn,
+.montazh-content .btn {
+    display: block;
+    margin: 2rem auto 0;
+    text-align: center;
+    width: fit-content;
+}
+
+/* Преимущества */
+.advantages-list {
+    max-width: 800px;
+    margin: 2rem auto 0;
+}
+
+.advantage-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advantage-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px var(--shadow-hover);
+}
+
+.advantage-icon {
+    font-size: 1.8rem;
+    color: var(--secondary);
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+.advantage-text h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* Карусели */
+.carousel {
+    position: relative;
+    overflow: visible;
+}
+
+.services-grid,
+.reviews-carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 2rem;
+    padding: 0 2rem 1rem;
+}
+
+.services-grid::-webkit-scrollbar,
+.reviews-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.service-card,
+.review-card {
+    flex: 0 0 calc(33.333% - 1.333rem);
+    scroll-snap-align: start;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover,
+.review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px var(--shadow-hover);
+}
+
+/* Отступ перед каруселью услуг */
+.services .carousel {
+    margin-top: 3rem; /* или 40px, 2.5rem — по вкусу */
+}
+
+.service-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.service-content {
+    padding: 1.5rem;
+}
+
+.service-title {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+/* Отзывы */
+.review-card {
+    padding: 1.5rem;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+    border: 2px solid var(--border);
+}
+
+.author-info h4 {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.2rem;
+}
+
+.author-info p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.rating {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    margin-top: 0.4rem;
+}
+
+/* Кнопки карусели */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover:not(:disabled) {
+    background-color: var(--primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.carousel-btn.prev {
+    left: -24px;
+}
+
+.carousel-btn.next {
+    right: -24px;
+}
+
+/* Контакты */
+
+
+
+.contact {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    text-align: center;
+    padding: 0.5rem 0; /* было 5rem */
+
+}
+
+.contact .section-title {
+    color: white;
+}
+
+.contact .section-title:after {
+    background: var(--secondary);
+}
+
+.contact-info {
+    font-size: 1.6rem;
+    margin: 2rem 0;
+}
+
+.contact-info a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.contact-info a:hover {
+    color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+/* Футер */
+footer {
+    background-color: #1a1a1a; /* глубокий тёмный фон */
+    color: #ddd;               /* светлый серый текст — не режет глаза */
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.95rem;
+    border-top: 1px solid #333; /* лёгкая граница сверху для отделения */
+}
+
+footer p {
+    margin: 0.3rem 0;
+}
+
+/* При наведении на ссылки (если добавите позже) */
+footer a {
+    color: #F7B733; /* или var(--secondary) */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    section {
+        padding: 3rem 0;
+    }
+
+    .services-grid,
+    .reviews-carousel {
+        padding: 0 1rem 1rem;
+    }
+
+    .service-card,
+    .review-card {
+        flex: 0 0 calc(50% - 1rem);
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-btn.prev { left: -20px; }
+    .carousel-btn.next { right: -20px; }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .services-grid,
+    .reviews-carousel {
+        gap: 1rem;
+        padding: 0 0.5rem 1rem;
+    }
+
+    .service-card,
+    .review-card {
+        flex: 0 0 100%;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .carousel-btn.prev { left: -16px; }
+    .carousel-btn.next { right: -16px; }
+}
+
+/* Ссылки-обёртки для карточек услуг */
+.service-card-link {
+    text-decoration: none; /* убирает подчёркивание */
+    color: inherit;        /* наследует цвет текста от родителя */
+    display: block;
+    outline: none;
+}
+
+.service-card-link:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}

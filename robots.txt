@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chsvc.github.io/Installation-fireplaces-Buzuluk.github.io/sitemap.xml
